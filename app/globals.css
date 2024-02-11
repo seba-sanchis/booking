@@ -3,27 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground: oklch(21.03% 0.01 285.89);
+  --border: oklch(66.55% 0.02 278.35);
+  --background: oklch(97.64% 0 286.38);
+
+  --primary-contrast: oklch(75.62% 0.15 235.37);
+  --secondary-contrast: oklch(97.15% 0.02 230.9);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground: oklch(97.64% 0 286.38);
+    --border: oklch(48.61% 0.02 282.29);
+    --background: oklch(21.03% 0.01 285.89);
+
+    --primary-contrast: oklch(58.47% 0.23 259.14);
+    --secondary-contrast: oklch(29.98% 0.11 260.64);
+    --tertiary-contrast: oklch(34.77% 0.01 285.66);
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* Hide arrows from input number */
+@layer base {
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield !important;
+  }
 }
 
 @layer utilities {
@@ -31,3 +43,39 @@ body {
     text-wrap: balance;
   }
 }
+
+.button {
+  @apply flex justify-center p-3.5 w-full rounded-lg bg-[--secondary-contrast] active:opacity-90;
+}
+
+.input {
+  @apply flex min-w-72 p-3.5 rounded-lg bg-[--background] outline-none;
+}
+
+/* 'smalt': {
+  '50': 'oklch(97.15% 0.02 230.90)',
+  '100': 'oklch(93.54% 0.04 231.03)',
+  '200': 'oklch(89.07% 0.07 230.05)',
+  '300': 'oklch(83.24% 0.11 227.92)',
+  '400': 'oklch(75.62% 0.15 235.37)',
+  '500': 'oklch(66.51% 0.19 249.73)',
+  '600': 'oklch(58.47% 0.23 259.14)',
+  '700': 'oklch(53.83% 0.26 262.38)',
+  '800': 'oklch(47.18% 0.23 262.46)',
+  '900': 'oklch(38.31% 0.16 260.18)',
+  '950': 'oklch(29.98% 0.11 260.64)',
+}, */
+
+/* 'bunker': {
+  '50': 'oklch(97.64% 0.00 286.38)',
+  '100': 'oklch(94.97% 0.00 286.35)',
+  '200': 'oklch(88.68% 0.01 286.26)',
+  '300': 'oklch(78.74% 0.01 280.42)',
+  '400': 'oklch(66.55% 0.02 278.35)',
+  '500': 'oklch(56.59% 0.02 279.60)',
+  '600': 'oklch(48.61% 0.02 282.29)',
+  '700': 'oklch(42.34% 0.02 281.47)',
+  '800': 'oklch(37.91% 0.02 285.57)',
+  '900': 'oklch(34.77% 0.01 285.66)',
+  '950': 'oklch(21.03% 0.01 285.89)',
+}, */
