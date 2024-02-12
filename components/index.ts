@@ -3,4 +3,7 @@ export { default as Hero } from "./Hero";
 export { default as Navbar } from "./Navbar";
 export { default as PropertyCard } from "./PropertyCard";
 export { default as PropertyGrid } from "./PropertyGrid";
+export { default as Reserve } from "./Reserve";
+export { default as Scroller } from "./Scroller";
 export { default as SearchBar } from "./SearchBar";
+export { default as SearchPanel } from "./SearchPanel";

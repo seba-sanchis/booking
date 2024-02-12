@@ -17,10 +17,17 @@ export default async function PropertyGrid({ searchParams }: Props) {
   });
 
   return (
-    <section className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
-      {properties.map((property: Property) => (
-        <PropertyCard key={property.slug.current} property={property} />
-      ))}
+    <section className="flex flex-col gap-4">
+      <div>
+        <h2 className="text-lg text-[--primary-contrast]">Explore Argentina</h2>
+        <p>These popular destinations have a lot to offer</p>
+      </div>
+
+      <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
+        {properties.map((property: Property) => (
+          <PropertyCard key={property.slug.current} property={property} />
+        ))}
+      </div>
     </section>
   );
 }

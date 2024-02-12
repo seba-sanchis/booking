@@ -45,11 +45,11 @@ body {
 }
 
 .button {
-  @apply flex justify-center p-3.5 w-full rounded-lg bg-[--secondary-contrast] active:opacity-90;
+  @apply flex justify-center p-3.5 flex-1 rounded-lg bg-[--secondary-contrast] active:opacity-90;
 }
 
 .input {
-  @apply flex min-w-72 p-3.5 rounded-lg bg-[--background] outline-none;
+  @apply flex min-w-72 p-3.5 rounded-lg bg-[--background] outline-none appearance-none;
 }
 
 /* 'smalt': {

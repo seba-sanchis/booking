@@ -22,20 +22,20 @@ export default function PropertyCard({ property }: Props) {
       href={`/property/${property.slug.current}`}
       className="flex flex-col rounded-lg border border-[--secondary-contrast] hover:border-[--primary-contrast]"
     >
-      <div className="overflow-hidden h-full max-h-40">
+      <div className="overflow-hidden h-full max-h-40 rounded-lg">
         <Image
           src={urlForImage(property.image[0])}
           alt="photo"
           width={256}
           height={256}
-          className="rounded-lg object-cover h-full"
+          className="object-cover h-full"
         />
       </div>
 
       <div className="flex flex-col p-4">
-        <div className="text-[--primary-contrast] font-semibold">
+        <h3 className="text-[--primary-contrast] font-semibold">
           {property.name}
-        </div>
+        </h3>
         <div className="font-semibold">{property.location}</div>
         <div className="text-sm self-end">
           Starting from:{" "}

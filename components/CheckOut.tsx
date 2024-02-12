@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { client } from "@/sanity/lib/client";
 
-type Props = {
-  propertyId: string;
-};
+import { regions } from "@/constants";
 
-export default function CheckOut({ propertyId }: Props) {
-  const [guestName, setGuestName] = useState("");
-  const [phone, setPhone] = useState("");
+export default function CheckOut() {
+  const [guest, setGuest] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    region: "Argentina",
+    phone: "",
+  });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,31 +31,53 @@ export default function CheckOut({ propertyId }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Guest Name:</label>
-        <input
-          id="name"
-          type="text"
-          value={guestName}
-          onChange={(e) => setGuestName(e.target.value)}
-          className="appearance-none bg-transparent"
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 flex-1">
+      <input
+        type="text"
+        placeholder="First Name"
+        value={guest.firstName}
+        onChange={(e) => setGuest({ ...guest, firstName: e.target.value })}
+        className="input"
+      />
 
-      <div>
-        <label htmlFor="phone">Phone:</label>
-        <input
-          id="phone"
-          type="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          className="appearance-none bg-transparent"
-        />
-      </div>
+      <input
+        type="text"
+        placeholder="Last Name"
+        value={guest.lastName}
+        onChange={(e) => setGuest({ ...guest, lastName: e.target.value })}
+        className="input"
+      />
 
-      <button type="submit" className="bg-rose-500 rounded-full">
-        Reserve
+      <input
+        type="email"
+        placeholder="Email"
+        value={guest.email}
+        onChange={(e) => setGuest({ ...guest, email: e.target.value })}
+        className="input"
+      />
+
+      <select
+        value={guest.region}
+        onChange={(e) => setGuest({ ...guest, region: e.target.value })}
+        className="input"
+      >
+        {regions.map((region) => (
+          <option key={region} value={region}>
+            {region}
+          </option>
+        ))}
+      </select>
+
+      <input
+        type="tel"
+        placeholder="Phone"
+        value={guest.phone}
+        onChange={(e) => setGuest({ ...guest, phone: e.target.value })}
+        className="input"
+      />
+
+      <button type="submit" className="button">
+        Check Out
       </button>
     </form>
   );

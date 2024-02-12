@@ -43,3 +43,18 @@ export async function getProperties(search: Search) {
   revalidatePath("/");
   return isFilter ? filtered : properties;
 }
+
+export async function getProperty(slug: string) {
+  const property = await client.fetch(
+    `*[_type == "property" && slug.current == $slug]`,
+    { slug }
+  );
+
+  const reservations = await client.fetch(
+    `*[_type == "reservation" && property._ref == $property[0]._id]`,
+    { property }
+  );
+
+  revalidatePath(`/property/${slug}`);
+  return { property: property[0], reservations: reservations };
+}
