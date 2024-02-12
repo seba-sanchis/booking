@@ -4,35 +4,57 @@ export default {
   title: "Reservation",
   fields: [
     {
-      name: "checkInDate",
-      type: "date",
-      title: "Check-in Date",
-    },
-    {
-      name: "checkOutDate",
-      type: "date",
-      title: "Check-out Date",
-    },
-    {
-      name: "guestName",
-      type: "string",
-      title: "Guest Name",
-    },
-    {
-      name: "phone",
-      type: "string",
-      title: "Phone",
-    },
-    {
-      name: "amountPaid",
-      type: "number",
-      title: "Amount Paid",
-    },
-    {
       name: "property",
       type: "reference",
       title: "Property",
       to: [{ type: "property" }],
+    },
+    {
+      name: "checkIn",
+      type: "date",
+      title: "Check-in Date",
+    },
+    {
+      name: "checkOut",
+      type: "date",
+      title: "Check-out Date",
+    },
+    {
+      name: "totalPrice",
+      type: "number",
+      title: "Total Price",
+    },
+    {
+      name: "guest",
+      type: "object",
+      title: "Guest",
+      fields: [
+        {
+          name: "firstName",
+          type: "string",
+          title: "First Name",
+        },
+        {
+          name: "lastName",
+          type: "string",
+          title: "Last Name",
+        },
+        {
+          name: "email",
+          type: "string",
+          title: "Email",
+        },
+        {
+          name: "region",
+          type: "string",
+          title: "Region",
+        },
+        {
+          name: "phone",
+          type: "string",
+          title: "Phone",
+        },
+      ],
     },
   ],
 };

@@ -9,8 +9,8 @@ type Props = {
 export default async function PropertyGrid({ searchParams }: Props) {
   const properties = await getProperties({
     location: searchParams.location,
-    checkInDate: searchParams.checkInDate,
-    checkOutDate: searchParams.checkOutDate,
+    checkIn: searchParams.checkIn,
+    checkOut: searchParams.checkOut,
     adults: searchParams.adults,
     children: searchParams.children,
     rooms: searchParams.rooms,

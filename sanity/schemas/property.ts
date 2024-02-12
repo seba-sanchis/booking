@@ -23,7 +23,7 @@ export default {
     },
     {
       name: "details",
-      type: "string",
+      type: "text",
       title: "Details",
     },
     {

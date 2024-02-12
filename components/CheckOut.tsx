@@ -3,8 +3,15 @@
 import { useState } from "react";
 
 import { regions } from "@/constants";
+import { client } from "@/sanity/lib/client";
 
-export default function CheckOut() {
+type Props = {
+  id: string;
+  date: { startDate: string; endDate: string };
+  totalPrice: number;
+};
+
+export default function CheckOut({ id, date, totalPrice }: Props) {
   const [guest, setGuest] = useState({
     firstName: "",
     lastName: "",
@@ -16,18 +23,17 @@ export default function CheckOut() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    // await client.create({
-    //   _type: "reservation",
-    //   checkInDate,
-    //   checkOutDate,
-    //   guestName,
-    //   phone,
-    //   amountPaid,
-    //   property: {
-    //     _type: "reference",
-    //     _ref: propertyId,
-    //   },
-    // });
+    await client.create({
+      _type: "reservation",
+      checkIn: date.startDate,
+      checkOut: date.endDate,
+      guest,
+      totalPrice,
+      property: {
+        _type: "reference",
+        _ref: id,
+      },
+    });
   }
 
   return (

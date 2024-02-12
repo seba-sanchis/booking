@@ -27,6 +27,7 @@ export default async function Page({ params }: Props) {
         </div>
 
         <Reserve
+          id={data.property._id}
           price={data.property.price}
           occupancy={data.property.occupancy}
           reservations={data.reservations}

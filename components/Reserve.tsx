@@ -5,13 +5,21 @@ import { CheckOut, SearchPanel } from ".";
 import { Reservation } from "@/types";
 
 type Props = {
+  id: string;
   price: number;
   occupancy: { adults: number; children: number; rooms: number };
   reservations: Reservation[];
 };
 
-export default function Reserve({ price, occupancy, reservations }: Props) {
+export default function Reserve({ id, price, occupancy, reservations }: Props) {
   const [toggleReserve, setToggleReserve] = useState(false);
+  const [date, setDate] = useState({
+    startDate: "",
+    endDate: "",
+  });
+  const [nights, setNights] = useState(0);
+
+  const totalPrice = price * nights;
 
   // Function to format currency amount
   function formatCurrency(amount: number) {
@@ -54,8 +62,15 @@ export default function Reserve({ price, occupancy, reservations }: Props) {
       <div
         className={`${toggleReserve ? "flex justify-between gap-4" : "hidden"}`}
       >
-        <SearchPanel price={price} reservations={reservations} />
-        <CheckOut />
+        <SearchPanel
+          date={date}
+          nights={nights}
+          reservations={reservations}
+          setDate={setDate}
+          setNights={setNights}
+          totalPrice={totalPrice}
+        />
+        <CheckOut id={id} date={date} totalPrice={totalPrice} />
       </div>
     </div>
   );

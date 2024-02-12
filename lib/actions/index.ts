@@ -5,7 +5,7 @@ import { Property, Reservation, Search } from "@/types";
 import { revalidatePath } from "next/cache";
 
 export async function getProperties(search: Search) {
-  const { location, checkInDate, checkOutDate, adults, children, rooms } =
+  const { location, checkIn, checkOut, adults, children, rooms } =
     search;
 
   const properties = await client.fetch(`*[_type == "property"]`);
@@ -30,8 +30,8 @@ export async function getProperties(search: Search) {
       // Check if the property is not reserved for the selected dates
       return (
         reservation.property._ref !== property._id ||
-        new Date(reservation.checkOutDate) < new Date(checkInDate) ||
-        new Date(reservation.checkInDate) > new Date(checkOutDate)
+        new Date(reservation.checkOut) < new Date(checkIn) ||
+        new Date(reservation.checkIn) > new Date(checkOut)
       );
     });
 

@@ -5,21 +5,26 @@ import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
 type Props = {
-  price: number;
+  date: { startDate: string; endDate: string };
+  nights: number;
   reservations: Reservation[];
+  setDate: React.Dispatch<
+    React.SetStateAction<{ startDate: string; endDate: string }>
+  >;
+  setNights: React.Dispatch<React.SetStateAction<number>>;
+  totalPrice: number;
 };
 
-export default function SearchPanel({ price, reservations }: Props) {
-  const [date, setDate] = useState({
-    startDate: "",
-    endDate: "",
-  });
+export default function SearchPanel({
+  date,
+  nights,
+  reservations,
+  setDate,
+  setNights,
+  totalPrice,
+}: Props) {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
-  const [nights, setNights] = useState(0);
-
-  const startDate = new Date(date.startDate);
-  const endDate = new Date(date.endDate);
 
   // Function to format the date
   function formatDate(date: Date) {
@@ -33,8 +38,28 @@ export default function SearchPanel({ price, reservations }: Props) {
     return date.toLocaleDateString(undefined, options);
   }
 
+  // Function to format currency amount
+  function formatCurrency(amount: number) {
+    return amount.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  }
+
+  function handleDisabled() {
+    const disabledDate = reservations.map((reservation) => ({
+      startDate: reservation.checkIn,
+      endDate: reservation.checkOut,
+    }));
+
+    return disabledDate;
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    const startDate = new Date(date.startDate);
+    const endDate = new Date(date.endDate);
 
     // Formatted start date
     const formattedStartDate = formatDate(startDate);
@@ -53,23 +78,6 @@ export default function SearchPanel({ price, reservations }: Props) {
 
     // Update the state with the number of nights
     setNights(differenceDays);
-  }
-
-  // Function to format currency amount
-  function formatCurrency(amount: number) {
-    return amount.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  }
-
-  function handleDisabled() {
-    const disabledDate = reservations.map((reservation) => ({
-      startDate: reservation.checkInDate,
-      endDate: reservation.checkOutDate,
-    }));
-
-    return disabledDate;
   }
 
   return (
@@ -126,7 +134,7 @@ export default function SearchPanel({ price, reservations }: Props) {
           <div className="flex justify-between">
             <span className="text-lg font-semibold">Price</span>
             <span className="text-lg font-semibold">
-              {formatCurrency(price * nights)}
+              {formatCurrency(totalPrice)}
             </span>
           </div>
         </div>

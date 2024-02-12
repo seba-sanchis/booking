@@ -13,11 +13,15 @@ export interface Property {
 
 export interface Reservation {
   _id: string;
-  checkInDate: Date;
-  checkOutDate: Date;
-  guestName: string;
-  phone: string;
-  amountPaid: number;
+  checkIn: Date;
+  checkOut: Date;
+  guest: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    totalPrice: number;
+  },
   property: {
     _ref: string;
     _type: string;
@@ -26,8 +30,8 @@ export interface Reservation {
 
 export interface Search {
   location: string;
-  checkInDate: string;
-  checkOutDate: string;
+  checkIn: string;
+  checkOut: string;
   adults: string;
   children: string;
   rooms: string;
