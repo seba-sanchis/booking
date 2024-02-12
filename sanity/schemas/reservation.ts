@@ -4,12 +4,6 @@ export default {
   title: "Reservation",
   fields: [
     {
-      name: "property",
-      type: "reference",
-      title: "Property",
-      to: [{ type: "property" }],
-    },
-    {
       name: "checkIn",
       type: "date",
       title: "Check-in Date",
@@ -23,6 +17,12 @@ export default {
       name: "totalPrice",
       type: "number",
       title: "Total Price",
+    },
+    {
+      name: "property",
+      type: "reference",
+      title: "Property",
+      to: [{ type: "property" }],
     },
     {
       name: "guest",
