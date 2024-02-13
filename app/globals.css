@@ -4,7 +4,6 @@
 
 :root {
   --foreground: oklch(21.03% 0.01 285.89);
-  --border: oklch(66.55% 0.02 278.35);
   --background: oklch(97.64% 0 286.38);
 
   --primary-contrast: oklch(75.62% 0.15 235.37);
@@ -14,12 +13,10 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground: oklch(97.64% 0 286.38);
-    --border: oklch(48.61% 0.02 282.29);
     --background: oklch(21.03% 0.01 285.89);
 
     --primary-contrast: oklch(58.47% 0.23 259.14);
     --secondary-contrast: oklch(29.98% 0.11 260.64);
-    --tertiary-contrast: oklch(34.77% 0.01 285.66);
   }
 }
 
